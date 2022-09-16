@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 url = "https://www.indeed.co.in/jobs?q=mobile+app+development&l="
 
 
-def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str], None, None]:
+def fetch_jobs(location: str = "accra") -> Generator[tuple[str, str], None, None]:
     soup = BeautifulSoup(requests.get(url + location).content, "html.parser")
     # This attribute finds out all the specifics listed in a job
     for job in soup.find_all("div", attrs={"data-tn-component": "organicJob"}):
@@ -21,5 +21,5 @@ def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str], None, Non
 
 
 if __name__ == "__main__":
-    for i, job in enumerate(fetch_jobs("Bangalore"), 1):
+    for i, job in enumerate(fetch_jobs("Ghana"), 1):
         print(f"Job {i:>2} is {job[0]} at {job[1]}")
